@@ -30,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./expect.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -112,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html">Probability</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Chap 01: Probability Theory</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,22 +135,14 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">StatsCentral</span></span>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Probability</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./expect.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Expectations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./distr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distributions</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StatisticalInference</span></a>
   </div>
 </li>
     </ul>
@@ -164,12 +155,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sets" id="toc-sets" class="nav-link active" data-scroll-target="#sets"><span class="header-section-number">1</span> Sets</a>
+  <li><a href="#sets" id="toc-sets" class="nav-link active" data-scroll-target="#sets">Sets</a>
   <ul class="collapse">
-  <li><a href="#operations-on-infinite-sets" id="toc-operations-on-infinite-sets" class="nav-link" data-scroll-target="#operations-on-infinite-sets"><span class="header-section-number">1.1</span> Operations on Infinite Sets</a></li>
-  <li><a href="#sigma-algebra" id="toc-sigma-algebra" class="nav-link" data-scroll-target="#sigma-algebra"><span class="header-section-number">1.2</span> Sigma-Algebra</a></li>
-  <li><a href="#kolmogorov-axioms-of-probability" id="toc-kolmogorov-axioms-of-probability" class="nav-link" data-scroll-target="#kolmogorov-axioms-of-probability"><span class="header-section-number">1.3</span> Kolmogorov Axioms of Probability</a></li>
-  <li><a href="#probability-function" id="toc-probability-function" class="nav-link" data-scroll-target="#probability-function"><span class="header-section-number">1.4</span> Probability Function</a></li>
+  <li><a href="#infinite-sets" id="toc-infinite-sets" class="nav-link" data-scroll-target="#infinite-sets">Infinite Sets</a></li>
+  <li><a href="#sigma-algebra" id="toc-sigma-algebra" class="nav-link" data-scroll-target="#sigma-algebra">Sigma-Algebra</a></li>
+  </ul></li>
+  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities">Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#kolmogorov-axioms" id="toc-kolmogorov-axioms" class="nav-link" data-scroll-target="#kolmogorov-axioms">Kolmogorov Axioms</a></li>
+  <li><a href="#probability-function" id="toc-probability-function" class="nav-link" data-scroll-target="#probability-function">Probability Function</a></li>
+  <li><a href="#counting" id="toc-counting" class="nav-link" data-scroll-target="#counting">Counting</a></li>
+  <li><a href="#with-replacements" id="toc-with-replacements" class="nav-link" data-scroll-target="#with-replacements">With Replacements</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -196,8 +192,8 @@ window.Quarto = {
 </header>
 
 
-<section id="sets" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="sets"><span class="header-section-number">1</span> Sets</h2>
+<section id="sets" class="level2">
+<h2 class="anchored" data-anchor-id="sets">Sets</h2>
 <div class="div" style="border: 1pt solid black; padding: 6pt">
 <p><strong>Definition 1.1.2</strong> Let A, B be events, subsets of S, then:</p>
 <p><strong>Union</strong>: The union of A and B, written <span class="math inline">\(A \cup B\)</span> is the set of elements that belong to either A or B or both: <span class="math display">\[ A \cup B = \{x: x \in A \text{ or } x \in B\} \]</span> <strong>Intersection</strong>: The intersection of A and B, written <span class="math inline">\(A \cap B\)</span> is the set of elements that belong to both A and B: <span class="math display">\[ A \cap B = \{x: x \in A \text{ and } x \in B\} \]</span> <strong>Complement</strong>: The complement of A, written as <span class="math inline">\(A^c\)</span>, is the set of all elements that are not in A: <span class="math display">\[ A^c = \{x: x \notin A \} \]</span></p>
@@ -216,8 +212,8 @@ d. DeMorgan's Laws &amp; (A \cup B)^c = A^c \cap B^c ,\\
 
 \end{array}\]</span>
 <hr>
-<section id="operations-on-infinite-sets" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="operations-on-infinite-sets"><span class="header-section-number">1.1</span> Operations on Infinite Sets</h3>
+<section id="infinite-sets" class="level3">
+<h3 class="anchored" data-anchor-id="infinite-sets">Infinite Sets</h3>
 <div class="div" style="border: 1pt solid black; padding: 6pt">
 <p><strong>Definition</strong> If <span class="math inline">\(A_1, A_2, A_3, \ldots\)</span> is a collection of sets, all defined on a sample space <span class="math inline">\(S\)</span>, then</p>
 <p><span class="math display">\[\begin{align*}
@@ -233,10 +229,9 @@ d. DeMorgan's Laws &amp; (A \cup B)^c = A^c \cap B^c ,\\
 <div class="div" style="border: 1pt solid black; padding: 6pt">
 <p><strong>Definition 1.1.6</strong> If <span class="math inline">\(A_1,A_2,\ldots\)</span> are pairwise disjoint and <span class="math inline">\(\bigcup_{i=0}^\infty A_i = S\)</span>, then the collection <span class="math inline">\(A_1, A_2, \dots\)</span> forms a partition of S.</p>
 </div>
-<hr>
 </section>
-<section id="sigma-algebra" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="sigma-algebra"><span class="header-section-number">1.2</span> Sigma-Algebra</h3>
+<section id="sigma-algebra" class="level3">
+<h3 class="anchored" data-anchor-id="sigma-algebra">Sigma-Algebra</h3>
 <div class="div" style="border: 1pt solid black; padding: 6pt">
 <p><strong>Definition 1.2.1</strong> A collection of subsets of S is called a <em>sigma algebra</em> (or <em>Borel field</em> ), denoted by <span class="math inline">\(\mathscr{B}\)</span>, if it satifies the following three properties:</p>
 <ol type="a">
@@ -245,10 +240,12 @@ d. DeMorgan's Laws &amp; (A \cup B)^c = A^c \cap B^c ,\\
 <li>If <span class="math inline">\(A_1, A_2, \ldots \in \mathscr{B}\)</span> then <span class="math inline">\(\bigcup_{i=1}^\infty A_i \in \mathscr{B}\)</span> (<span class="math inline">\(\mathscr{B}\)</span> is closed under countable unions).</li>
 </ol>
 </div>
-<hr>
 </section>
-<section id="kolmogorov-axioms-of-probability" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="kolmogorov-axioms-of-probability"><span class="header-section-number">1.3</span> Kolmogorov Axioms of Probability</h3>
+</section>
+<section id="probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="probabilities">Probabilities</h2>
+<section id="kolmogorov-axioms" class="level3">
+<h3 class="anchored" data-anchor-id="kolmogorov-axioms">Kolmogorov Axioms</h3>
 <div class="div" style="border: 1pt solid black; padding: 6pt">
 <p><strong>Definition 1.2.4</strong> Given a sample space <span class="math inline">\(S\)</span> and an associated sigma algebra <span class="math inline">\(\mathscr{B}\)</span> that satisfies</p>
 <ol type="a">
@@ -259,8 +256,8 @@ d. DeMorgan's Laws &amp; (A \cup B)^c = A^c \cap B^c ,\\
 </div>
 <hr>
 </section>
-<section id="probability-function" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="probability-function"><span class="header-section-number">1.4</span> Probability Function</h3>
+<section id="probability-function" class="level3">
+<h3 class="anchored" data-anchor-id="probability-function">Probability Function</h3>
 <div class="div">
 <p><strong>Theorem 1.2.6</strong> Let <span class="math inline">\(S = {s_1,\ldots,s_n}\)</span> be a finite set. Let <span class="math inline">\(\mathscr{B}\)</span> be any sigma algebra of subsets of <span class="math inline">\(S\)</span>. Let <span class="math inline">\(p_1,\ldots,p_n\)</span> be nonnegative numbers that sum to 1. For any <span class="math inline">\(A \in \mathscr{B}\)</span>, define <span class="math inline">\(P(A)\)</span> by <span class="math display">\[
 P(A) = \sum_{\{i:s_i \in A\}} p_i
@@ -285,6 +282,69 @@ P(A) = \sum_{\{i:s_i \in A\}} p_i
 </ol>
 </div>
 <hr>
+<div class="div">
+<p><strong>Theorem 1.2.11</strong> If <span class="math inline">\(P\)</span> is a probability function, then</p>
+<ol type="a">
+<li><span class="math inline">\(P(A) = \sum_{i=1}^\infty P(A \cap C_i )\)</span> for any partition <span class="math inline">\(C_1, C_2, \ldots ;\)</span></li>
+<li><span class="math inline">\(P(\cup_{i=1}^\infty A_i )\le \sum_{i=1}^\infty P(A_i)\)</span> for any sets $A_1, A_2, \ldots $;</li>
+</ol>
+</div>
+</section>
+<section id="counting" class="level3">
+<h3 class="anchored" data-anchor-id="counting">Counting</h3>
+<div class="div" style="border: 1pt solid black; padding: 6pt">
+<p><strong>Definition 1.2.17</strong> For nonnegative integers <span class="math inline">\(n\)</span> and <span class="math inline">\(r\)</span>, where <span class="math inline">\(n \ge r\)</span>, we define the symbol <span class="math inline">\(n \choose r\)</span>, read <code>n choose r</code>, as <span class="math display">\[
+{n \choose r} = \dfrac{n!}{r!(n-r)!}
+\]</span></p>
+</div>
+</section>
+<section id="with-replacements" class="level3">
+<h3 class="anchored" data-anchor-id="with-replacements">With Replacements</h3>
+Table 1.2.1 Number of possible arrangements of size <span class="math inline">\(r\)</span> from <span class="math inline">\(n\)</span> objects.
+<span class="math display">\[\begin{array}{c c c}
+\hline
+          &amp; {Without}  &amp; {With}  \\
+          &amp; Replacement &amp; Replacement\\
+\hline
+  Ordered &amp; \dfrac{n!}{(n-r)!} &amp; n^r \\
+  Unordered &amp; \displaystyle{ n \choose r}&amp; \displaystyle{{n+r-1} \choose r}\\
+\hline
+\end{array}\]</span>
+<ol type="1">
+<li><strong>Example</strong>: drawing five cards (Poker) from a deck of 52 cards (i.e.&nbsp;sampling without replacement).</li>
+</ol>
+<ul>
+<li>Unordered arrangement of five cards = <span class="math inline">\(\displaystyle {52 \choose 5}\)</span> = <span class="math inline">\(\dfrac{52!}{47!5!}\)</span> = 2,598,960 <span class="math inline">\(\qquad \blacksquare\)</span></li>
+</ul>
+<ol type="a">
+<li><strong>Four aces</strong> out of 5 cards
+<ul>
+<li>there are 48 (52-4) different ways to choose fifth card. <span class="math display">\[
+P (\text{four aces}) = \dfrac{48}{2,598,960} = {1}:{254,145} \qquad \blacksquare
+\]</span></li>
+</ul></li>
+<li><strong>Four of a kind</strong> e.g.&nbsp;four queens
+<ul>
+<li>there are 13 ways to specify which denomination {1:King}.</li>
+<li>there are 48 ways to select the fifth card. <span class="math display">\[
+P(\text{four of a kind}) = \dfrac{(13)(48)}{2,598,960} = \dfrac{624}{2,598,960}= {1}:{4,165} \qquad \blacksquare
+\]</span></li>
+</ul></li>
+<li><strong>Exactly one pair</strong> only e.g.&nbsp;queen pair
+<ul>
+<li>outcomes for one pair only :</li>
+<li>specify denomination for the pair</li>
+<li>two cards from a denomination</li>
+<li>specify the other three denonimations</li>
+<li>specify the other three cards from the denominations</li>
+</ul></li>
+</ol>
+<p><span class="math display">\[
+  13 {4 \choose 2} {12 \choose 3} 4^3 = 1,098,240
+\]</span></p>
+<p>Thus, <span class="math display">\[
+P(\text{exactly one pair})=\dfrac{1,098,240}{2,598,960} = 1:(2.58) \qquad\blacksquare
+\]</span></p>
 
 
 </section>
@@ -691,15 +751,6 @@ P(A) = \sum_{\{i:s_i \in A\}} p_i
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./expect.html" class="pagination-link" aria-label="Expectations">
-        <span class="nav-page-text">Expectations</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
