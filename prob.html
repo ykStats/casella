@@ -350,10 +350,30 @@ P(\text{exactly one pair})=\dfrac{1,098,240}{2,598,960} = 1:(2.58) \qquad\blacks
 </section>
 <section id="conditional-probability" class="level3">
 <h3 class="anchored" data-anchor-id="conditional-probability">Conditional Probability</h3>
-<div class="div" style="border: 1pt black solid">
+<div class="div" style="border: 1pt black solid; padding: 6pt">
 <p><strong>Definition 1.3.2</strong> If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are events in <span class="math inline">\(S\)</span> and <span class="math inline">\(P(B) \gt 0\)</span> , then the conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> , written as <span class="math inline">\(P(A|B)\)</span> is:</p>
 <p><span class="math display">\[
 P(A|B) = \dfrac{P(A \cap B}{P(B)}
+\]</span></p>
+</div>
+<p><span class="math inline">\(\\\)</span></p>
+<div class="div" style="border: 1pt black solid; padding: 6pt">
+<p><strong>Theorem 1.3.5 (Bayes’ Rule)</strong> Let <span class="math inline">\(A_1,A_2, \ldots\)</span> be a partition of the sample space, and let B be any set. Then for each i=1,2,, <span class="math display">\[
+P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^\infty P(B|A_j)P(A_j)}
+\]</span></p>
+</div>
+<p><span class="math inline">\(\\\)</span></p>
+<div class="div" style="border: 1pt black solid; padding: 6pt">
+<p><strong>Definition 1.3.7</strong> Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are statistically independent if:</p>
+<p><span class="math display">\[
+P(A \cap B) = P(A)P(B)
+\]</span></p>
+</div>
+<p><span class="math inline">\(\\\)</span></p>
+<div class="div" style="border: 1pt black solid; padding: 6pt">
+<p><strong>Definition 1.3.12</strong> A collection of events <span class="math inline">\(A_1, \ldots, A_n\)</span> are <em>mutually independent</em> if for any subcollection <span class="math inline">\(A_{i_1},\dots,A_{i_k}\)</span>, we have</p>
+<p><span class="math display">\[
+P(\bigcap_{j=1}^k A_{i_j}) = \prod_{j=1}^k P(A_{i_j}).
 \]</span></p>
 </div>
 
