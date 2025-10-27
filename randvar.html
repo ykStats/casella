@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Casella-Statistical Inference – Statistical Inference</title>
+<title>Random Variables – Statistical Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -69,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Casella</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Random Variables</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -112,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Casella</span></a>
   </div>
 </li>
@@ -121,15 +185,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#prob-function-on-a-random-variable" id="toc-prob-function-on-a-random-variable" class="nav-link active" data-scroll-target="#prob-function-on-a-random-variable">Prob Function on a Random Variable</a></li>
+  <li><a href="#cumulative-distribution-functions" id="toc-cumulative-distribution-functions" class="nav-link" data-scroll-target="#cumulative-distribution-functions">Cumulative Distribution Functions</a></li>
+  <li><a href="#r-code-for-discrete-cdf" id="toc-r-code-for-discrete-cdf" class="nav-link" data-scroll-target="#r-code-for-discrete-cdf">R-Code for discrete CDF</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Casella-Statistical Inference</h1>
+<h1 class="title">Random Variables</h1>
 </div>
 
 
@@ -146,26 +218,77 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<hr>
-<p><a href="https://ykstats.github.io">StatsCentral</a></p>
-<p><a href="https://ykstats.github.io/casella/">Casella-Statistical Inference</a></p>
-<ol type="1">
-<li><a href="./prob.html">Probability Theory</a></li>
-<li><a href="./randvar.html">Random Variables</a></li>
-<li><a href="./expect.html">Expectations</a></li>
-<li><a href="./distr.html">Distributions</a></li>
-</ol>
-<p>Multiple Random Variables</p>
-<p>Random Samples</p>
-<p>Data Reduction</p>
-<p>Point Estimation</p>
-<p>Hypothesis Testing</p>
-<p>Interval Estimation</p>
-<p>Asymptotic Evaluations</p>
-<p>ANOVA and Regression</p>
-<p>Logistic Regression</p>
+<div class="div" style="border: 1pt solid black; padding: 6pt">
+<p><strong>Definition 1.4.1</strong> A <em>random variable</em> is a function from a sample space <span class="math inline">\(S\)</span> into the real numbers.</p>
+</div>
+<p><br>
+Suppose <span class="math inline">\(S = \{s_1,\ldots, s_n\}\)</span> and there is a probability function <span class="math inline">\(P\)</span> on random variable <span class="math inline">\(X\)</span> with range=<span class="math inline">\(\{x_1,\ldots,x_m\}\)</span>, then,</p>
+<p><span class="math display">\[
+P(X = x_i) = P({s_j \in S: X(s_j)= x_i})
+\]</span></p>
+<section id="prob-function-on-a-random-variable" class="level3">
+<h3 class="anchored" data-anchor-id="prob-function-on-a-random-variable">Prob Function on a Random Variable</h3>
+<p><strong>Example 1.4.3 (Three coin tosses-II)</strong></p>
+<p>Consider experiment of tossing a fair coin three times. Define the random variable <span class="math inline">\(X\)</span> to be the number of heads obtained in three tosses.</p>
+<p>The complete enumeration of X for each point in the sample space is</p>
+<span class="math display">\[\begin{array}{c c c c c c c c c}
+\hline
+  s &amp; HHH &amp; HHT &amp; HTH &amp; THH &amp; TTH &amp; THT &amp; HTT &amp; TTT\\
+\hline
+X(s) &amp; 3 &amp; 2 &amp; 2 &amp; 2 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+\hline
+\end{array}\]</span>
+<p>The range for the random variable <span class="math inline">\(X\)</span> is <span class="math inline">\({\it{X}}=\{0,1,2,3\}\)</span>.</p>
+<p>The probability function is:</p>
+<span class="math display">\[\begin{array}{c c c c c}
+\hline
+  x &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\
+\hline
+P(X=x) &amp; \frac{1}{8} &amp; \frac{3}{8} &amp; \frac{3}{8} &amp; \frac{1}{8} \\
+\hline
+\end{array}\]</span>
+<p>For example, <span class="math inline">\(P(X=1) = P({HTT, THT, TTH}) = \frac{3}{8}\)</span></p>
+</section>
+<section id="cumulative-distribution-functions" class="level3">
+<h3 class="anchored" data-anchor-id="cumulative-distribution-functions">Cumulative Distribution Functions</h3>
+<div class="div" style="border: 1pt solid black; padding: 6pt">
+<p><strong>Definition 1.5.1</strong> the <em>cumulative distribution function</em> or <em>cdf</em> of a random variable <span class="math inline">\(X\)</span>, is defined by:</p>
+<p><span class="math display">\[
+F(X) = P(X \le x), \text{ for all } x
+\]</span></p>
+</div>
+<p><br>
+</p>
+<p><strong>Example 1.5.2 (Three coin tosses-III)</strong> Experiment of tossing three fair coins. Let <span class="math inline">\(X\)</span> be the number of heads observed. The <span class="math inline">\(cdf\)</span> of <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[\begin{align*}
+  F(x) =
+  \begin{dcases*}
+    0 &amp; if  $-\infty &lt; x &lt; 0$\\
+    \tfrac{1}{8} &amp; if  $0 \le x \lt 1 $\\
+    \tfrac{1}{2} &amp; if  $1 \le x \lt 2 $\\
+    \tfrac{7}{8} &amp; if  $2 \le x \lt 3 $\\
+    1 &amp; if  $3 \le x \lt \infty $\\
+  \end{dcases*}
+\end{align*}\]</span></p>
+</section>
+<section id="r-code-for-discrete-cdf" class="level3">
+<h3 class="anchored" data-anchor-id="r-code-for-discrete-cdf">R-Code for discrete CDF</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiscreteDists)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.125</span>,<span class="fl">0.375</span>,<span class="fl">0.375</span>,<span class="fl">0.125</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_discrete_cdf</span>(x, fx, <span class="at">las=</span><span class="dv">1</span>, <span class="at">main=</span><span class="st">"Discrete Cumulative Distribution Function (cdf)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="randvar_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
