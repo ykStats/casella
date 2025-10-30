@@ -293,21 +293,34 @@ F(X) = P(X \le x), \text{ for all } x
 </div>
 <p><strong>Theorem 1.5.3</strong> The function <span class="math inline">\(F(x)\)</span> is a <code>cdf</code> if and only if the following three conditions hold:</p>
 <ol type="a">
-<li><span class="math inline">\(lim_{x \rightarrow \infty} F(x) = 0\)</span> and <span class="math inline">\(lim_{x \rightarrow \infty} F(x) = 1\)</span></li>
+<li><span class="math inline">\(lim_{x \rightarrow -\infty} F(x) = 0\)</span> and <span class="math inline">\(lim_{x \rightarrow \infty} F(x) = 1\)</span></li>
 <li><span class="math inline">\(F(x)\)</span> is a nondecreasing function of <span class="math inline">\(x\)</span></li>
 <li><span class="math inline">\(F(x)\)</span> is right-continuous; that is, for every number <span class="math inline">\(x_0\)</span>, <span class="math inline">\(lim_{x|x_0} F(x) = F(x_0)\)</span></li>
 </ol>
 <p><strong>Example 1.5.4 (Tossing for a head)</strong></p>
-<p>Let <span class="math inline">\(p\)</span> be the probability of a head on any given toss.</p>
-<p>Let <span class="math inline">\(X\)</span> be a random variable for number of tosses required to get a head.</p>
-<p>Then, for <span class="math inline">\(x = 1,2,\ldots\)</span>,</p>
+<p>Let <span class="math inline">\(X\)</span> be a random variable for number of tosses required to get a head. If <span class="math inline">\(p\)</span> is the probability of a head on any given toss, then, for <span class="math inline">\(x = 1,2,\ldots\)</span>,</p>
 <p><span class="math display">\[
 P(X = x) = (1-p)^{x-1}p
 \]</span></p>
 <p>then,</p>
 <p><span class="math display">\[
-P(X \le x) =
+P(X \le x) = \sum_{i=1}^x P(X=i) = \sum_{i=1}^x (1-p)^{i-1} p
 \]</span></p>
+<p>Note that the partial sum of the geometric series is:</p>
+<p><span class="math display">\[
+\sum_{k=1}^n t^{k-1} = \frac{1-t^n}{1-t}, \quad t \ne 1.
+\]</span></p>
+<p>which can be induced by induction. Thus, the <code>cdf</code> is given by:</p>
+<p><span class="math display">\[\begin{align*}
+  F_X (x) &amp;= P(X \le x) \\
+          &amp;= \frac{1-(1-p)^x}{1-(1-p)} . p \\
+          &amp;= 1 - (1-p)^x, \quad x = 1,2,\ldots.
+\end{align*}\]</span></p>
+<p>Note:</p>
+<ol type="a">
+<li>If <span class="math inline">\(x \lt 0\)</span> i.e.&nbsp;negative number of heads then <span class="math inline">\(P(X=x)=0\)</span> and <span class="math inline">\(P(X \lt x) = 0\)</span>. Then, <span class="math inline">\(lim_{x \rightarrow -\infty} F_X(x) = 0\)</span>.</li>
+<li>If <span class="math inline">\(x \gt 0\)</span>, then <span class="math inline">\(lim_{x \rightarrow \infty} F_X (x) = lim_{x \rightarrow \infty} \{1 - (1-p)^x\} = 1\)</span></li>
+</ol>
 
 
 </section>
