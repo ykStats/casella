@@ -320,13 +320,27 @@ P(X \le x) = \sum_{i=1}^x P(X=i) = \sum_{i=1}^x (1-p)^{i-1} p
           &amp;= \frac{1-(1-p)^x}{1-(1-p)} . p \\
           &amp;= 1 - (1-p)^x, \quad x = 1,2,\ldots.
 \end{align*}\]</span></p>
-<p><strong>Proof that <span class="math inline">\(F_X(x)\)</span> is a CDF:</strong></p>
+<p><strong>Proof that</strong> <span class="math inline">\(F_X(x)\)</span> is a CDF:</p>
 <p>We verify CDF using Theorem 1.5.3. above. Noting that for <span class="math inline">\(0 \lt p \lt 1\)</span>,</p>
-<p>a1. If <span class="math inline">\(x \lt 0\)</span> i.e.&nbsp;negative number of heads then <span class="math inline">\(P(X=x)=0\)</span> and <span class="math inline">\(P(X \lt x) = 0\)</span>. Then, <span class="math inline">\(lim_{x \rightarrow -\infty} F_X(x) = 0\)</span>.</p>
-<p>a2. If <span class="math inline">\(x \gt 0\)</span>, then <span class="math inline">\(lim_{x \rightarrow \infty} F_X (x) = lim_{x \rightarrow \infty} \{1 - (1-p)^x\} = 1\)</span> since <span class="math inline">\((1-p)^x \rightarrow 0\)</span> when <span class="math inline">\(x \rightarrow \infty\)</span></p>
-<ol start="2" type="a">
-<li></li>
+<ol type="a">
+<li><span class="math inline">\(lim_{x \pm \infty} F_X(x)\)</span></li>
 </ol>
+<ul>
+<p>If <span class="math inline">\(x \lt 0\)</span> i.e.&nbsp;negative number of heads then <span class="math inline">\(P(X=x)=0\)</span> and <span class="math inline">\(P(X \lt x) = 0\)</span>. Then, <span class="math inline">\(lim_{x \rightarrow -\infty} F_X(x) = 0\)</span>.</p>
+<p>If <span class="math inline">\(x \gt 0\)</span>, then <span class="math inline">\(lim_{x \rightarrow \infty} F_X (x) = lim_{x \rightarrow \infty} \{1 - (1-p)^x\} = 1\)</span> since <span class="math inline">\((1-p)^x \rightarrow 0\)</span> when <span class="math inline">\(x \rightarrow \infty\)</span></p>
+</ul>
+<ol start="2" type="a">
+<li><p>Since <span class="math inline">\(F_X(x) = \sum_{i=1}^x (1-p)^{i-1} p\)</span>, and <span class="math inline">\(0 \lt p \lt 0\)</span>, the sum contains <em>positive</em> additions, which means <span class="math inline">\(F_X(x)\)</span> is non-decreasing function of x.</p></li>
+<li><p>Since <span class="math inline">\((1-p)^\epsilon  \rightarrow 1\)</span> when <span class="math inline">\(\epsilon \rightarrow 0\)</span> and,</p></li>
+</ol>
+<p><span class="math display">\[\begin{align*}
+  F_X(x) &amp;= 1 - (1-p)^x \qquad x=1,2,\ldots \\
+  F_X(x+\epsilon) &amp;= 1 - (1-p)^{x+\epsilon} \\
+  &amp;= 1 -(1-p)^x(1-p)^\epsilon \\
+  lim_{x \downarrow 0} F_X(x +\epsilon) &amp;= 1 - (1-p)^x.1 \\
+  &amp;= F_X(x)
+\end{align*}\]</span></p>
+<p>and we showed that <span class="math inline">\(F_X(x)\)</span> is right-continuous. <span class="math inline">\(\qquad \blacksquare\)</span></p>
 
 
 </section>
