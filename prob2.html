@@ -195,6 +195,7 @@ window.Quarto = {
   <li><a href="#prob-function-on-a-random-variable" id="toc-prob-function-on-a-random-variable" class="nav-link" data-scroll-target="#prob-function-on-a-random-variable">Prob Function on a Random Variable</a></li>
   <li><a href="#cumulative-distribution-functions" id="toc-cumulative-distribution-functions" class="nav-link" data-scroll-target="#cumulative-distribution-functions">Cumulative Distribution Functions</a></li>
   <li><a href="#r-code-for-discrete-cdf" id="toc-r-code-for-discrete-cdf" class="nav-link" data-scroll-target="#r-code-for-discrete-cdf">R-Code for discrete CDF</a></li>
+  <li><a href="#geometric-cdf" id="toc-geometric-cdf" class="nav-link" data-scroll-target="#geometric-cdf">Geometric CDF</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -282,7 +283,7 @@ F(X) = P(X \le x), \text{ for all } x
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiscreteDists)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.125</span>,<span class="fl">0.375</span>,<span class="fl">0.375</span>,<span class="fl">0.125</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_discrete_cdf</span>(x, fx, <span class="at">las=</span><span class="dv">1</span>, <span class="at">main=</span><span class="st">"Discrete Cumulative Distribution Function (cdf)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_discrete_cdf</span>(x, fx, <span class="at">las=</span><span class="dv">1</span>, <span class="at">main=</span><span class="st">"Discrete CDF"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -297,6 +298,9 @@ F(X) = P(X \le x), \text{ for all } x
 <li><span class="math inline">\(F(x)\)</span> is a nondecreasing function of <span class="math inline">\(x\)</span></li>
 <li><span class="math inline">\(F(x)\)</span> is right-continuous; that is, for every number <span class="math inline">\(x_0\)</span>, <span class="math inline">\(lim_{x|x_0} F(x) = F(x_0)\)</span></li>
 </ol>
+</section>
+<section id="geometric-cdf" class="level3">
+<h3 class="anchored" data-anchor-id="geometric-cdf">Geometric CDF</h3>
 <p><strong>Example 1.5.4 (Tossing for a head)</strong></p>
 <p>Let <span class="math inline">\(X\)</span> be a random variable for number of tosses required to get a head. If <span class="math inline">\(p\)</span> is the probability of a head on any given toss, then, for <span class="math inline">\(x = 1,2,\ldots\)</span>,</p>
 <p><span class="math display">\[
@@ -310,16 +314,18 @@ P(X \le x) = \sum_{i=1}^x P(X=i) = \sum_{i=1}^x (1-p)^{i-1} p
 <p><span class="math display">\[
 \sum_{k=1}^n t^{k-1} = \frac{1-t^n}{1-t}, \quad t \ne 1.
 \]</span></p>
-<p>which can be induced by induction. Thus, the <code>cdf</code> is given by:</p>
+<p>which can be induced by induction. Thus, the geometric <code>cdf</code> is given by:</p>
 <p><span class="math display">\[\begin{align*}
   F_X (x) &amp;= P(X \le x) \\
           &amp;= \frac{1-(1-p)^x}{1-(1-p)} . p \\
           &amp;= 1 - (1-p)^x, \quad x = 1,2,\ldots.
 \end{align*}\]</span></p>
-<p>Note:</p>
-<ol type="a">
-<li>If <span class="math inline">\(x \lt 0\)</span> i.e.&nbsp;negative number of heads then <span class="math inline">\(P(X=x)=0\)</span> and <span class="math inline">\(P(X \lt x) = 0\)</span>. Then, <span class="math inline">\(lim_{x \rightarrow -\infty} F_X(x) = 0\)</span>.</li>
-<li>If <span class="math inline">\(x \gt 0\)</span>, then <span class="math inline">\(lim_{x \rightarrow \infty} F_X (x) = lim_{x \rightarrow \infty} \{1 - (1-p)^x\} = 1\)</span></li>
+<p><strong>Proof that <span class="math inline">\(F_X(x)\)</span> is a CDF:</strong></p>
+<p>We verify CDF using Theorem 1.5.3. above. Noting that for <span class="math inline">\(0 \lt p \lt 1\)</span>,</p>
+<p>a1. If <span class="math inline">\(x \lt 0\)</span> i.e.&nbsp;negative number of heads then <span class="math inline">\(P(X=x)=0\)</span> and <span class="math inline">\(P(X \lt x) = 0\)</span>. Then, <span class="math inline">\(lim_{x \rightarrow -\infty} F_X(x) = 0\)</span>.</p>
+<p>a2. If <span class="math inline">\(x \gt 0\)</span>, then <span class="math inline">\(lim_{x \rightarrow \infty} F_X (x) = lim_{x \rightarrow \infty} \{1 - (1-p)^x\} = 1\)</span> since <span class="math inline">\((1-p)^x \rightarrow 0\)</span> when <span class="math inline">\(x \rightarrow \infty\)</span></p>
+<ol start="2" type="a">
+<li></li>
 </ol>
 
 
