@@ -363,7 +363,6 @@ f(x) = P(X = x) = (1-p)^{x-1}p \qquad x = 1,2,3,\ldots
 <section id="continuous-cdf---logistics-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-cdf---logistics-distribution">Continuous CDF - Logistics Distribution</h3>
 <p><span class="math display">\[\begin{align*}
-  f(x) &amp;= \frac{x^{-x}}{(1+ e^{-x})^2}  \\
   F_X(x) &amp;= \frac{1}{1+e^{-x}} \qquad x \in \mathbb{R} \tag{1.5.5}\\               
 \end{align*}\]</span></p>
 <p><strong>Proof (1.5.5) is a continuous CDF</strong></p>
@@ -378,13 +377,13 @@ f(x) = P(X = x) = (1-p)^{x-1}p \qquad x = 1,2,3,\ldots
 <li>Condition 2</li>
 </ol>
 <ul>
-Since <span class="math inline">\({d \over dx} {F_X(x)} = \dfrac{e^{-x}}{(1+e^{-x})^2} \gt 0\)</span>, then <span class="math inline">\(F_X(x)\)</span> is an increasing function.
+Since <span class="math inline">\({d \over dx} {F_X(x)} = \dfrac{-(0-e^x)}{(1+e^{-x})^2} = \dfrac{e^{-x}}{(1+e^{-x})^2} \gt 0\)</span>, then <span class="math inline">\(F_X(x)\)</span> is an increasing function.
 </ul>
 <ol start="3" type="a">
 <li>Condition 3</li>
 </ol>
 <ul>
-<span class="math inline">\(F_X(x)\)</span> is continuous, and thus right continuous.
+<span class="math inline">\(F_X(x)\)</span> is continuous, and thus right continuous. <span class="math inline">\(\qquad \blacksquare\)</span>
 </ul>
 
 
