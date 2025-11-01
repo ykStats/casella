@@ -198,6 +198,7 @@ window.Quarto = {
   <li><a href="#discrete-cdf---geometric-distribution" id="toc-discrete-cdf---geometric-distribution" class="nav-link" data-scroll-target="#discrete-cdf---geometric-distribution">Discrete CDF - Geometric Distribution</a></li>
   <li><a href="#continuous-cdf---logistics-distribution" id="toc-continuous-cdf---logistics-distribution" class="nav-link" data-scroll-target="#continuous-cdf---logistics-distribution">Continuous CDF - Logistics Distribution</a></li>
   <li><a href="#plot-of-logistic-curve" id="toc-plot-of-logistic-curve" class="nav-link" data-scroll-target="#plot-of-logistic-curve">Plot of Logistic curve</a></li>
+  <li><a href="#probability-density-and-mass-functions" id="toc-probability-density-and-mass-functions" class="nav-link" data-scroll-target="#probability-density-and-mass-functions">Probability Density and Mass Functions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -404,6 +405,30 @@ Since <span class="math inline">\({d \over dx} {F_X(x)} = \dfrac{-(0-e^x)}{(1+e^
 </div>
 </div>
 </div>
+</section>
+<section id="probability-density-and-mass-functions" class="level3">
+<h3 class="anchored" data-anchor-id="probability-density-and-mass-functions">Probability Density and Mass Functions</h3>
+<div id="def" style="border: 1pt solid; padding: 6pt">
+<p><strong>Definition 1.6.1</strong> The probability mass function (pmf) of a discrete random variable X is given by:</p>
+<p><span class="math display">\[
+f_X(x) = P(X=x) \quad \text{for all } x.
+\]</span></p>
+</div>
+<p><br>
+</p>
+<div style="border: 1pt solid; padding: 6pt">
+<p><strong>Definition 1.6.3</strong> The probability density function (pdf) of a continuous random variable X is a function that satisfies</p>
+<p><span class="math display">\[
+F_X(x) = \int_{-\infty}^{x} F_X(t)dt \quad\text{for all } x.
+\]</span></p>
+</div>
+<p><br>
+</p>
+<p><strong>Theorem 1.6.5</strong> A function <span class="math inline">\(f_X(x)\)</span> is a pdf (or pmf) of a random variable <span class="math inline">\(X\)</span> if and only if:</p>
+<ol type="a">
+<li><p><span class="math inline">\(f_X(x) \ge 0\)</span> for all <span class="math inline">\(x\)</span>,</p></li>
+<li><p><span class="math inline">\(\sum_x f_X(x) = 1 \ (pmf)\)</span> or <span class="math inline">\(\int_{-\infty}^\infty f_X(x) dx = 1 \ (pdf)\)</span></p></li>
+</ol>
 
 
 </section>
