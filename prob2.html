@@ -197,6 +197,7 @@ window.Quarto = {
   <li><a href="#r-code-for-discrete-cdf" id="toc-r-code-for-discrete-cdf" class="nav-link" data-scroll-target="#r-code-for-discrete-cdf">R-Code for discrete CDF</a></li>
   <li><a href="#discrete-cdf---geometric-distribution" id="toc-discrete-cdf---geometric-distribution" class="nav-link" data-scroll-target="#discrete-cdf---geometric-distribution">Discrete CDF - Geometric Distribution</a></li>
   <li><a href="#continuous-cdf---logistics-distribution" id="toc-continuous-cdf---logistics-distribution" class="nav-link" data-scroll-target="#continuous-cdf---logistics-distribution">Continuous CDF - Logistics Distribution</a></li>
+  <li><a href="#plot-of-logistic-curve" id="toc-plot-of-logistic-curve" class="nav-link" data-scroll-target="#plot-of-logistic-curve">Plot of Logistic curve</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -385,6 +386,24 @@ Since <span class="math inline">\({d \over dx} {F_X(x)} = \dfrac{-(0-e^x)}{(1+e^
 <ul>
 <span class="math inline">\(F_X(x)\)</span> is continuous, and thus right continuous. <span class="math inline">\(\qquad \blacksquare\)</span>
 </ul>
+</section>
+<section id="plot-of-logistic-curve" class="level3">
+<h3 class="anchored" data-anchor-id="plot-of-logistic-curve">Plot of Logistic curve</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(<span class="sc">-</span>x)<span class="sc">/</span>((<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="sc">-</span>x))<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(f, <span class="at">from=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">to=</span><span class="dv">5</span>,<span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"blue"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"logistic curve"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">f</span>(<span class="dv">0</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="prob2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
