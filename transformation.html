@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Casella-Statistical Inference – Statistical Inference</title>
+<title>Chap02: Transformations – Statistical Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prob1.html" rel="next">
+<link href="./expectation.html" rel="next">
+<link href="./prob2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -70,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -83,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Casella</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transformation.html">transformation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Casella</span></a>
   </div>
 </li>
@@ -131,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transformation.html" class="sidebar-item-text sidebar-link">
+  <a href="./transformation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">transformation</span></a>
   </div>
 </li>
@@ -146,15 +176,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#binomial-transformation" id="toc-binomial-transformation" class="nav-link active" data-scroll-target="#binomial-transformation">Binomial Transformation</a></li>
+  <li><a href="#uniform-transformation" id="toc-uniform-transformation" class="nav-link" data-scroll-target="#uniform-transformation">Uniform Transformation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Casella-Statistical Inference</h1>
+<h1 class="title">Chap02: Transformations</h1>
 </div>
 
 
@@ -172,26 +209,47 @@ ul.task-list li input[type="checkbox"] {
 
 
 <hr>
-<p><a href="https://ykstats.github.io">StatsCentral</a></p>
-<p><a href="https://ykstats.github.io/casella/">Casella-Statistical Inference</a></p>
-<ol type="1">
-<li><a href="./prob1.html">Probability1</a></li>
-<li><a href="./prob2.html">Probability2</a></li>
-<li><a href="./transformation.html">Transformations</a></li>
-<li><a href="./expectation.html">Expectations</a></li>
-<li><a href="./distr.html">Distributions</a></li>
-</ol>
-<p>Multiple Random Variables</p>
-<p>Random Samples</p>
-<p>Data Reduction</p>
-<p>Point Estimation</p>
-<p>Hypothesis Testing</p>
-<p>Interval Estimation</p>
-<p>Asymptotic Evaluations</p>
-<p>ANOVA and Regression</p>
-<p>Logistic Regression</p>
+<p>If <span class="math inline">\(X\)</span> is a random variable with <em>cdf</em> <span class="math inline">\(F_X(x)\)</span> , then any function of <span class="math inline">\(X\)</span>, say <span class="math inline">\(g(X)\)</span> is also a random variable. We denote the new random variable <span class="math inline">\(Y\)</span> as <span class="math inline">\(Y = g(X)\)</span>. Thus for any set <span class="math inline">\(A\)</span>, we note that:</p>
+<p><span class="math display">\[\begin{align*}
+  P(Y \in A) = P(g(X) \in A)
+\end{align*}\]</span></p>
+<section id="binomial-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="binomial-transformation">Binomial Transformation</h3>
+<p>A discrete random variable <span class="math inline">\(X\)</span> has a binomial distribution, <span class="math inline">\(Bin(n,p)\)</span>, with <em>pmf:</em></p>
+<p><span class="math display">\[\begin{align*}
+  f_X(x) = P(X = x) = {n \choose x} p^x (1-p)^{n-x}, \quad x=0,1,\ldots,n
+\end{align*}\]</span> where <span class="math inline">\(n\)</span> is a positive integer, and <span class="math inline">\(0 \le p \le 1\)</span>.</p>
+<p>Suppose <span class="math inline">\(y=g(x)\)</span> where <span class="math inline">\(y = n-x\)</span>, then:</p>
+<p><span class="math display">\[\begin{align*}
+  f_Y(y) &amp;= \sum_{x \in g^{-1}(y)} f_X(x) \\
+    &amp;= f_X(n-y) \\
+    &amp;= {n \choose {n-y}} p^{n-y} (1-p)^{n-(n-y)} \\
+    &amp;= {n \choose y} (1-p)^{y}p^{n-y}\\
+\end{align*}\]</span></p>
+<p>thus <span class="math inline">\(Y\)</span> is binomial with parameters <code>n</code> and <code>(1-p)</code> i.e.&nbsp;<span class="math inline">\(Bin(n, 1-p)\)</span>.</p>
+</section>
+<section id="uniform-transformation" class="level3">
+<h3 class="anchored" data-anchor-id="uniform-transformation">Uniform Transformation</h3>
+<p>Consider <span class="math inline">\(X\)</span> a random variable with uniform distribution:</p>
+<p><span class="math display">\[\begin{align*}
+  f_X(x) = \begin{cases}
+    1 / (2\pi) &amp; 0 \lt x \lt 2\pi \\
+    0 &amp; \text{otherwise}
+  \end{cases}
+\end{align*}\]</span></p>
+<p>Consider <span class="math inline">\(Y = sin^2(X)\)</span> shown in the plot below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="transformation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -596,10 +654,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./prob2.html" class="pagination-link" aria-label="Probability2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Probability2</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prob1.html" class="pagination-link" aria-label="Probability1">
-        <span class="nav-page-text">Probability1</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./expectation.html" class="pagination-link" aria-label="expectation">
+        <span class="nav-page-text">expectation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
