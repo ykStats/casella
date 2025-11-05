@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Chap02: Transformations – Statistical Inference</title>
+<title>test – Statistical Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./expectation.html" rel="next">
-<link href="./prob2.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -106,35 +104,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -148,7 +117,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./transformation.html">transformation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">test</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -196,7 +165,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transformation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./transformation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">transformation</span></a>
   </div>
 </li>
@@ -216,8 +185,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#binomial-transformation" id="toc-binomial-transformation" class="nav-link active" data-scroll-target="#binomial-transformation">Binomial Transformation</a></li>
-  <li><a href="#uniform-transformation" id="toc-uniform-transformation" class="nav-link" data-scroll-target="#uniform-transformation">Uniform Transformation</a></li>
+  <li><a href="#test-of-column-margin" id="toc-test-of-column-margin" class="nav-link active" data-scroll-target="#test-of-column-margin">Test of <code>column-margin</code></a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +194,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Chap02: Transformations</h1>
+<h1 class="title">test</h1>
 </div>
 
 
@@ -243,123 +211,50 @@ window.Quarto = {
 </header>
 
 
-<hr>
-<p>If <span class="math inline">\(X\)</span> is a random variable with <em>cdf</em> <span class="math inline">\(F_X(x)\)</span> , then any function of <span class="math inline">\(X\)</span>, say <span class="math inline">\(g(X)\)</span> is also a random variable. We denote the new random variable <span class="math inline">\(Y\)</span> as <span class="math inline">\(Y = g(X)\)</span>. Thus for any set <span class="math inline">\(A\)</span>, we note that:</p>
-<p><span class="math display">\[\begin{align*}
-  P(Y \in A) = P(g(X) \in A)
-\end{align*}\]</span></p>
-<section id="binomial-transformation" class="level3">
-<h3 class="anchored" data-anchor-id="binomial-transformation">Binomial Transformation</h3>
-<p>A discrete random variable <span class="math inline">\(X\)</span> has a binomial distribution, <span class="math inline">\(Bin(n,p)\)</span>, with <em>pmf:</em></p>
-<p><span class="math display">\[\begin{align*}
-  f_X(x) = P(X = x) = {n \choose x} p^x (1-p)^{n-x}, \quad x=0,1,\ldots,n
-\end{align*}\]</span> where <span class="math inline">\(n\)</span> is a positive integer, and <span class="math inline">\(0 \le p \le 1\)</span>.</p>
-<p>Suppose <span class="math inline">\(y=g(x)\)</span> where <span class="math inline">\(y = n-x\)</span>, then:</p>
-<p><span class="math display">\[\begin{align*}
-  f_Y(y) &amp;= \sum_{x \in g^{-1}(y)} f_X(x) \\
-    &amp;= f_X(n-y) \\
-    &amp;= {n \choose {n-y}} p^{n-y} (1-p)^{n-(n-y)} \\
-    &amp;= {n \choose y} (1-p)^{y}p^{n-y}\\
-\end{align*}\]</span></p>
-<p>thus <span class="math inline">\(Y\)</span> is binomial with parameters <code>n</code> and <code>(1-p)</code> i.e.&nbsp;<span class="math inline">\(Bin(n, 1-p)\)</span>.</p>
-</section>
-<section id="uniform-transformation" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="uniform-transformation">Uniform Transformation</h3>
-<p>Consider <span class="math inline">\(X\)</span> a random variable with uniform distribution:</p>
-<p><span class="math display">\[\begin{align*}
-  f_X(x) = \begin{cases}
-    1 / (2\pi) &amp; 0 \lt x \lt 2\pi \\
-    0 &amp; \text{otherwise}
-  \end{cases}
-\end{align*}\]</span></p>
-<p>Consider <span class="math inline">\(Y = sin^2(X)\)</span> shown in the plot below.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){(<span class="fu">sin</span>(x))<span class="sc">^</span><span class="dv">2</span>}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(f, <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">2</span><span class="sc">*</span>pi,<span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"blue"</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="transformation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Theorem 2.1.3</strong> Let <span class="math inline">\(X\)</span> have cdf <span class="math inline">\(F_X(x)\)</span>, and let <span class="math inline">\(Y = g(X)\)</span>, and let the sample spaces be <span class="math inline">\(\mathscr X = \{x: f_X(x) &gt; 0\}\)</span> and <span class="math inline">\(\mathscr Y = \{y: y=g(x) \text{ for some } x \in \mathscr X\}\)</span> as defined.</p>
-<ol type="a">
-<li>If <span class="math inline">\(g\)</span> is an <em>increasing</em> function on <span class="math inline">\(\mathscr X\)</span>, then <span class="math inline">\(F_Y(y) = F_X(g^-1 (y))\)</span> for <span class="math inline">\(y \in \mathscr Y\)</span>.</li>
-<li>If <span class="math inline">\(g\)</span> is a <em>decreasing</em> function on <span class="math inline">\(\mathscr X\)</span>, and <span class="math inline">\(X\)</span> is a continuous random variable, then <span class="math inline">\(F_Y(y) = 1 - F_X(g^-1 (y))\)</span> for <span class="math inline">\(y \in \mathscr Y\)</span>.</li>
-</ol>
-<p><strong>Example 2.1.4 (Uniform-exponential I)</strong>. Suppose we have the <em>uniform</em> random variable <span class="math inline">\(X \sim f_X(x)\)</span> with density function:</p>
-<p><span class="math display">\[\begin{align*}
-f_X(x) &amp;= 1 \text{ if } 0 &lt; x &lt; 1 \\
-  &amp;= 0 \text{  otherwise }
-\end{align*}\]</span></p>
+<section id="test-of-column-margin" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="test-of-column-margin">Test of <code>column-margin</code></h2>
+<p>Some general text</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="transformation_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="test_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</div></div><p>Then the <code>cdf</code> is <span class="math inline">\(F_X(x) = x, \ 0 \lt x \lt 1. \quad\)</span></p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<div class="cell">
+</div></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># discrete uniform stepfunction</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mystepf <span class="ot">&lt;-</span> <span class="fu">stepfun</span>(x,y)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mystepf,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">main=</span><span class="st">"Continuous Step-Uniform (0,1)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="transformation_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="test_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</div></div><p>Suppose we have transformation, <span class="math inline">\(Y=g(X)=-log X\)</span>. Since <span class="math display">\[
-{d \over dx}g(x) = {d \over dx} (-log x) = \frac{-1}{x} \lt 0, \quad \text{for } 0 \lt x \lt 1.
-\]</span> <span class="math inline">\(g(x)\)</span> is a decreasing function (derivative negative). As <span class="math inline">\(X\)</span> ranges between 0 and 1, <span class="math inline">\(-log\ x\)</span> ranges between 0 and <span class="math inline">\(\infty\)</span>. For <span class="math inline">\(y &gt; 0\)</span>, <span class="math inline">\(y= -log\ x\)</span> implies <span class="math inline">\(x = e^{-y}\)</span>, so <span class="math inline">\(g^{-1} (y) = e^{-y}.\)</span></p>
-
-<div class="no-row-height column-margin column-container"><div class="">
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># -log x</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="sc">-</span><span class="fu">log</span>(x)}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y, <span class="at">from=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">to=</span><span class="dv">2</span>,<span class="at">lwd=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in log(x): NaNs produced</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="transformation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="test_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-</div></div><p>Thus, for <span class="math inline">\(y &gt; 0\)</span>,</p>
-<p><span class="math display">\[\begin{align*}
-  F_Y(y) &amp;= 1 - F_X(g^{-1}(y)) \\
-      &amp;= 1 - F_X(e^{-y}) \\
-      &amp;= 1 - e^{-y}. \qquad (F_X(x) = x)
-\end{align*}\]</span></p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="transformation_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div><p>For <span class="math inline">\(y \le 0 \quad F_Y(y) = 0\)</span></p>
-<p>Thus:</p>
-<p><span class="math display">\[\begin{align*}
-  F_Y(y) = \begin{cases}
-              1 - e^{-y} &amp; \text{if } y \gt 0 \\
-              0 &amp; otherwise
-           \end{cases}
-\end{align*}\]</span></p>
 
 
 </section>
@@ -765,18 +660,6 @@ f_X(x) &amp;= 1 \text{ if } 0 &lt; x &lt; 1 \\
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./prob2.html" class="pagination-link" aria-label="probability2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">probability2</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./expectation.html" class="pagination-link" aria-label="expectation">
-        <span class="nav-page-text">expectation</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
