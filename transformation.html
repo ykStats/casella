@@ -368,6 +368,16 @@ f_X(x) &amp;= 1 \text{ if } 0 &lt; x &lt; 1 \\
           0 &amp; otherwise
           \end{cases}
 \end{align*}\]</span></p>
+<p><strong>Example 2.1.6 (Inverted gamma PDF)</strong> Let <span class="math inline">\(f_X(x)\)</span> be the gamma pdf:</p>
+<p><span class="math display">\[\begin{align*}
+  f(x) = \frac{1}{(n-1)!\beta^n} x^{n-1} e^{-x/\beta} , \quad 0 &lt; x &lt; \infty
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(\beta\)</span> is a positive constant and <span class="math inline">\(n\)</span> is a positive integer. Suppose we want to find the pdf of <span class="math inline">\(g(X) = 1/X\)</span>. Note that here the support of <span class="math inline">\(\mathscr X\)</span> and <span class="math inline">\(\mathscr Y\)</span> are both the interval <span class="math inline">\((0,\infty)\)</span>. If we let <span class="math inline">\(y=g(x)\)</span>, then <span class="math inline">\(g^{-1}(y)=1/y\)</span> and <span class="math inline">\(\frac{d}{dx} g^{-1}(y) = -1/y^2\)</span>. Applying Theorem 2.1.5 for <span class="math inline">\(y \in (0,\infty)\)</span>, we get</p>
+<p><span class="math display">\[\begin{align*}
+  f_Y(y) &amp;= f_x(g^{-1}(y)) \left\lvert \frac{d}{dy} g^{-1}(y) \right\rvert \\
+  &amp;= \frac{1}{(n-1)!\beta^n} \left( \frac{1}{y}\right) ^{n-1} e^{-1/(\beta y)} \frac{1}{y^2} \\
+  &amp;= \frac{1}{(n-1)!\beta^n} \left( \frac{1}{y}\right) ^{n+1} e^{-1/(\beta y)} \qquad \blacksquare
+\end{align*}\]</span></p>
 
 
 </section>
