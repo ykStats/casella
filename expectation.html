@@ -218,6 +218,24 @@ window.Quarto = {
     &amp;= -xe^{-x/\lambda} \bigg|_0^\infty + \int_0^\infty e^{-x/\lambda} dx &amp;\text{(integration by parts)}\\
     &amp;= \int_0^\infty e^{-x/\lambda} dx = \lambda  \qquad \blacksquare
 \end{align*}\]</span></p>
+<p><strong>Example 2.2.3 (Binomial mean) If X has a binomial distribution, its pmf is given by:</strong></p>
+<p><span class="math display">\[\begin{align*}
+  P(X=x) = {n \choose x} p^x (1-p)^{n-x}, \quad x = 0,1,\ldots n
+\end{align*}\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is a positive integer, <span class="math inline">\(p\)</span> is <span class="math inline">\(0 &lt; p &lt; 1\)</span>, and for every fixed pair of <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, the pmf sums to 1.</p>
+<p><span class="math display">\[\begin{align*}
+  E X &amp;= \sum_{x=0}^n x {n \choose x} p^x (1-p)^{n-x} \\
+      &amp;= \sum_{x=1}^n x {n \choose x} p^x (1-p)^{n-x} &amp;(\text{the } x=0 \text{ term is 0})\\
+\end{align*}\]</span></p>
+<p>Using the identity <span class="math inline">\(x {n \choose x} = n {{n-1} \choose {x-1}}\)</span>, we have</p>
+<p><span class="math display">\[\begin{align*}
+  E X &amp;= \sum_{x=1}^n n{ {n-1} \choose {x-1}} p^x (1-p)^{n-x} \\
+     &amp;= \sum_{y=0}^{n-1} n{{n-1}\choose y}p^{y+1}(1-p)^{n-(y+1)}. &amp;(\text{substitute }y=x-1)\\
+     &amp;= np\sum_{y=0}^{n-1} {{n-1}\choose{y}}p^{y}(1-p)^{n-1-y} \\
+     &amp;= np. \qquad \blacksquare
+\end{align*}\]</span></p>
+<p>the last summation must be 1, being the sum of all possible values of the pmf, <span class="math inline">\(binomial(n-1,p)\)</span> .</p>
+<hr>
 
 
 
