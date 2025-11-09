@@ -385,7 +385,7 @@ f_X(x) &amp;= 1 \text{ if } 0 &lt; x &lt; 1 \\
 <li>the set <span class="math inline">\(\mathscr Y = \{y: y=g_i(x)\)</span> for some <span class="math inline">\(x \in A\)</span>} is the same for each <span class="math inline">\(i=1,\ldots,k,\)</span> and</li>
 <li><span class="math inline">\(g_i^{-1}(y)\)</span> has a continuous derivative on <span class="math inline">\(\mathscr Y\)</span>, for each <span class="math inline">\(i=1,\ldots,k\)</span>. Then</li>
 </ol>
-f_Y(y) =
+<p>f_Y(y) =</p>
 <span class="math display">\[\begin{cases}
           \sum_{i=1}^k f_X(g_i^{-1}(y)) \left| \frac{d}{dy} g_i^{-1}(y) \right| \quad y \in \mathscr Y \\
           %  \left| \frac{d}{dy} g_i^{-1}(y) \right| \quad y \in Y \\
@@ -409,6 +409,15 @@ f_Y(y) =
 \end{align*}\]</span></p>
 <p>i.e.&nbsp;the <em>chi-squared random variable</em> with 1 degree of freedom.</p>
 <hr>
+<p><strong>Theorem 2.1.10 (Probability integral transform)</strong> Let <span class="math inline">\(X\)</span> have continuous cdf <span class="math inline">\(F_X(x)\)</span> and define the random variable <span class="math inline">\(Y\)</span> as <span class="math inline">\(Y=g(x)=F_X(x)\)</span>. Then <span class="math inline">\(Y\)</span> is uniformly distributed on <span class="math inline">\((0,1)\)</span>, that is <span class="math inline">\(P(Y \le y) = y , \quad 0 &lt; y &lt; 1.\)</span></p>
+<p><strong>Proof</strong>: For <span class="math inline">\(Y = F_X(x)\)</span>, we have, for <span class="math inline">\(0 &lt; x &lt; 1\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+  P(Y \le y) &amp;= P(F_X(x) \le y) \\
+             &amp;= P(F_X^{-1} [F_X(X)] \le F_X^{-1} (y))  &amp;(F_X^{-1} \text{ is increasing}) \\
+             &amp;= P(X \le F_X^{-1}(y)) \\
+             &amp;= F_X(F_X^{-1}(y)) &amp;(\text{definition of }F_X) \\
+             &amp;= y &amp;(\text{continuity of }F_X)
+\end{align*}\]</span></p>
 
 
 </section>

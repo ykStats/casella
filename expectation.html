@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -171,6 +200,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
+<p><strong>Definition 2.2.1</strong> The expected value or mean of a random variable g(X), denoted by E g(X) , is</p>
+<p><span class="math display">\[\begin{align*}
+  E g(X) = \begin{cases}
+            \int_{-\infty}^{\infty} f_X(x) dx   &amp;\text{if X is continuous}\\
+            \sum_{x \in X} g(X)f_X(x) = \sum_{x\in X} g(x)P(X=x)  &amp;\text{if X is discrete}
+           \end{cases}
+\end{align*}\]</span></p>
+<p><strong>Example 2.2.2 (Exponential mean)</strong> Suppose X has an exponential (\lambda) distribution, with pdf</p>
+<p><span class="math display">\[\begin{align*}
+  f_X(x) = \frac{1}{\lambda} e ^{-x/\lambda}, \quad &amp;0 &lt; x &lt; \infty, &amp; \lambda &gt;0
+\end{align*}\]</span></p>
+<p>The E X is given by:</p>
+<p><span class="math display">\[\begin{align*}
+  E X &amp;= \int_0^\infty \frac{1}{\lambda} e ^{-x/\lambda} dx \\
+    &amp;= -xe^{-x/\lambda} \bigg|_0^\infty + \int_0^\infty e^{-x/\lambda} dx &amp;\text{(integration by parts)}\\
+    &amp;= \int_0^\infty e^{-x/\lambda} dx = \lambda  \qquad \blacksquare
+\end{align*}\]</span></p>
 
 
 
